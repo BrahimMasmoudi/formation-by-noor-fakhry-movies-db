@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="tabs">
+  <Tabs>
     <template #movies>
       <v-col sm="6" lg="2" md="3" v-for="movie in data?.movies?.results">
         <MovieCard :movie="movie"/>
@@ -11,13 +11,12 @@
         <SeriesCard :series="series"/>
       </v-col>
     </template>
-  </NuxtLayout>
+  </Tabs>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'tabs'
-})
+import Tabs from "~/components/Tabs.vue";
+
 const {data} = await useFetch('/api/top-rated')
 
 </script>
