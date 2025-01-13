@@ -10,7 +10,7 @@ const route = useRoute()
 const id = route.params.id as string
 const type = route.params.type as string
 
-const {data} = useFetch(`/api/movies/${type}/${id}`)
+const {data} = useFetch(`/api/${type}/${id}`)
 </script>
 
 <style scoped>
