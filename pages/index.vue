@@ -1,34 +1,41 @@
 <template>
   <div>
-    <section>
-      <h1 class="mt-4 ml-4 mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Featured Movies
-      </h1>
+    <v-tabs
+        v-model="selectedType"
+        align-tabs="center"
+        color="primary"
+        class="mt-4">
+      <v-tab value="movies">Featured Movies</v-tab>
+      <v-tab value="series"> Featured Tv Series</v-tab>
+    </v-tabs>
 
-      <ul class="grid grid-cols-5 gap">
-        <li v-for="movie in movies">
-          <MovieCard :movie="movie"/>
-        </li>
-      </ul>
-    </section>
+    <v-card-text>
+      <v-tabs-window v-model="selectedType">
+        <v-tabs-window-item value="movies">
+          <v-row class="grid grid-cols-5 gap">
+            <v-col sm="6" lg="2" md="3" v-for="movie in movies">
+              <MovieCard :movie="movie"/>
+            </v-col>
+          </v-row>
+        </v-tabs-window-item>
 
-    <section>
-      <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Featured Tv Series
-      </h1>
-      <ul class="grid grid-cols-5 gap">
-        <li v-for="series in seriesList">
-          <SeriesCard :series="series"/>
-        </li>
-      </ul>
-    </section>
+        <v-tabs-window-item value="series">
+          <v-row class="grid grid-cols-5 gap">
+            <v-col sm="6" lg="2" md="3" v-for="series in seriesList">
+              <SeriesCard :series="series"/>
+            </v-col>
+          </v-row>
+        </v-tabs-window-item>
+      </v-tabs-window>
+    </v-card-text>
   </div>
 </template>
 
 <script setup lang="ts">
+export type Type = 'movies' | 'series'
 const movies = useState(() => [])
 const seriesList = useState(() => [])
-
+const selectedType = ref<Type>('movies')
 
 await useFetch('/api/movies/discover', {
   transform: data => {

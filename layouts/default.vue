@@ -5,7 +5,7 @@
         <v-tabs
             v-model="selectedTab"
             align-tabs="center"
-            color="deep-purple-accent-4">
+            color="primary">
           <v-tab value="HOME" to="/">
             Home
           </v-tab>

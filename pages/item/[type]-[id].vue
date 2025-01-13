@@ -1,7 +1,7 @@
 <template>
   <div>
     <MovieCard :is-full-details="true" v-if="type === 'movie' && data"  :movie="data.item" />
-    <SeriesCard  v-if="type === 'tv' && data"  :series="data.item"/>
+    <SeriesCard :is-full-details="true" v-if="type === 'tv' && data"  :series="data.item"/>
   </div>
 </template>
 
