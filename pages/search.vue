@@ -61,12 +61,11 @@ const movies = ref<Movie[]>([])
 const series = ref<Series[]>([])
 
 const onSubmitClick  = async () => {
-  await useFetch('/api/movies/search', {
+  await useFetch('/api/search', {
     query: {
       search: search.value
     },
     transform: data => {
-      console.log(data)
       movies.value = data.movies.results
       series.value = data.series.results
     }

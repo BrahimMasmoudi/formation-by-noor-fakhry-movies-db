@@ -18,7 +18,7 @@
 definePageMeta({
   layout: 'tabs'
 })
-const {data} = await useFetch('/api/movies/now-playing')
+const {data} = await useFetch('/api/now-playing')
 
 </script>
 

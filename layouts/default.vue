@@ -28,6 +28,7 @@
     <main class="mt-15">
       <slot/>
     </main>
+
   </v-app>
 </template>
 

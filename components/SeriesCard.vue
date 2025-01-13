@@ -1,5 +1,5 @@
 <template>
-  <v-card variant="flat" :to="`/item/tv-${series.id}`"  class="d-flex flex-col align-center justify-center pa-4">
+  <v-card variant="flat" :to="`/item/tv-${series.id}`" class="d-flex flex-col align-center justify-center pa-4">
     <v-img v-if="series.poster_path" class="rounded-lg" :src="`${imageSiteUrl}${series.poster_path}`"
            width="300"
            alt="series Image" cover/>
@@ -38,13 +38,6 @@ const getYear = computed(() => {
 })
 
 const imageSiteUrl = 'https://image.tmdb.org/t/p/w500/'
-
-const itemState = useState('chosenItem', () => {
-})
-
-const changeItemState = (item: any) => {
-  itemState.value = item
-}
 </script>
 
 <style scoped>
