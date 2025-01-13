@@ -4,21 +4,21 @@
       align-tabs="center"
       color="primary"
       class="mt-4">
-    <v-tab value="movies">Movies</v-tab>
-    <v-tab value="series">Tv Series</v-tab>
+    <v-tab value="movie">Movies</v-tab>
+    <v-tab value="tv">Tv Series</v-tab>
   </v-tabs>
 
   <v-card-text>
     <v-tabs-window v-model="selectedType">
-      <v-tabs-window-item value="movies">
+      <v-tabs-window-item value="movie">
         <v-row class="grid grid-cols-5 gap">
-          <slot name="movies"/>
+          <slot name="movie"/>
         </v-row>
       </v-tabs-window-item>
 
-      <v-tabs-window-item value="series">
+      <v-tabs-window-item value="tv">
         <v-row class="grid grid-cols-5 gap">
-          <slot name="series"/>
+          <slot name="tv"/>
         </v-row>
       </v-tabs-window-item>
     </v-tabs-window>
@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-export type Type = 'movies' | 'series'
+export type Type = 'movie' | 'tv'
 
-const selectedType = ref<Type>('movies')
+const selectedType = defineModel({default : 'movie'})
 
 </script>
 

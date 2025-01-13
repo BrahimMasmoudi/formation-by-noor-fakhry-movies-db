@@ -21,6 +21,10 @@
           <v-tab value="TOP_RATED" to="/top-rated">
             Top rated
           </v-tab>
+
+          <v-tab value="TRENDING" to="/trending">
+            Trending
+          </v-tab>
         </v-tabs>
       </v-sheet>
     </v-app-bar>
@@ -33,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-export type Page = 'HOME' | 'SEARCH' | 'POPULAR' | 'NOW_PLAYING' | 'TOP_RATED'
+export type Page = 'HOME' | 'SEARCH' | 'POPULAR' | 'NOW_PLAYING' | 'TOP_RATED' | 'TRENDING'
 const selectedTab = ref<Page>('HOME')
 </script>
 

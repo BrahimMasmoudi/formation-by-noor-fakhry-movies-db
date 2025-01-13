@@ -22,7 +22,7 @@ const elements = ref()
 
 watch(() => selectedTab.value, async (value) => {
   elements.value = []
-  elements.value = await $fetch(`/api/${value}/top-rated`)
+  elements.value = await $fetch(`/api/${value}/trending`)
 }, {immediate: true})
 </script>
 

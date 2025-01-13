@@ -1,13 +1,13 @@
 <template>
-  <Tabs>
-    <template #movies>
-      <v-col sm="6" lg="2" md="3" v-for="movie in data?.movies?.results">
+  <Tabs v-model="selectedTab">
+    <template #movie>
+      <v-col sm="6" lg="2" md="3" v-for="movie in elements?.movies?.results">
         <MovieCard :movie="movie"/>
       </v-col>
     </template>
 
-    <template #series>
-      <v-col sm="6" lg="2" md="3" v-for="series in data?.series?.results">
+    <template #tv>
+      <v-col sm="6" lg="2" md="3" v-for="series in elements?.series?.results">
         <SeriesCard :series="series"/>
       </v-col>
     </template>
@@ -15,10 +15,15 @@
 </template>
 
 <script setup lang="ts">
-import Tabs from "~/components/Tabs.vue";
+import Tabs, {type Type} from "~/components/Tabs.vue";
 
-const {data} = await useFetch('/api/popular')
+const selectedTab = ref<Type>('movie')
+const elements = ref()
 
+watch(() => selectedTab.value, async (value) => {
+  elements.value = []
+  elements.value = await $fetch(`/api/${value}/popular`)
+}, {immediate: true})
 </script>
 
 <style scoped>
