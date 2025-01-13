@@ -1,19 +1,25 @@
 <template>
-  <section>
-    <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-      Now playing Movies
-    </h1>
-
-    <ul class="grid grid-cols-5 gap">
-      <li v-for="movie in data?.nowPlayingMovies?.results ??[]">
+  <NuxtLayout name="tabs">
+    <template #movies>
+      <v-col sm="6" lg="2" md="3" v-for="movie in data?.nowPlayingMovies.results">
         <MovieCard :movie="movie"/>
-      </li>
-    </ul>
-  </section>
+      </v-col>
+    </template>
+
+    <template #series>
+      <v-col sm="6" lg="2" md="3" v-for="series in data?.nowPlayingSeries.results">
+        <SeriesCard :series="series"/>
+      </v-col>
+    </template>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'tabs'
+})
 const {data} = await useFetch('/api/movies/now-playing')
+
 </script>
 
 <style scoped>

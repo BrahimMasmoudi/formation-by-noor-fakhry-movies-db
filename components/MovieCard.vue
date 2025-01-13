@@ -7,7 +7,6 @@
       <h5 class="my-2 text-lg font-bold tracking-tight text-black text-center dark:text-white">
         {{ movie.title }} ({{ getYear }})
       </h5>
-
       <v-card v-if="movie.overview" height="200"
               class="px-4 pt-2 text-sm font-medium text-white bg-primary rounded-lg ">
         {{ isFullDetails ? movie.overview : `${movie.overview.slice(0, 180)}...` }}

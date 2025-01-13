@@ -3,6 +3,7 @@ export default defineEventHandler(async (event) => {
     const {accessToken} = config
 
     const movieUrl = "https://api.themoviedb.org/3/movie/now_playing"
+    const seriesUrl = "https://api.themoviedb.org/3/tv/airing_today"
     const nowPlayingMovies = await $fetch(movieUrl, {
         method: 'get',
         headers: {
@@ -18,7 +19,23 @@ export default defineEventHandler(async (event) => {
         }
     })
 
+    const nowPlayingSeries = await $fetch(seriesUrl, {
+        method: 'get',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${accessToken}`
+        },
+        query: {
+            include_adult: false,
+            include_video: false,
+            language: 'en-US',
+            page: '1',
+            sort_by: 'popularity.desc'
+        }
+    })
+
     return {
-        nowPlayingMovies
+        nowPlayingMovies,
+        nowPlayingSeries
     }
 })
