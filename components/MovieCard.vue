@@ -1,8 +1,6 @@
 <template>
   <v-card class="pa-4" variant="flat" :to="`/item/movie-${movie.id}`">
-    <NuxtLink>
-      <img class="rounded-t-lg" :src="`${imageSiteUrl}${movie.poster_path}`" alt="Movie Image"/>
-    </NuxtLink>
+      <v-img class="rounded-lg" :src="`${imageSiteUrl}${movie.poster_path}`" alt="Movie Image"/>
     <div>
       <h5 class="my-2 text-lg font-bold tracking-tight text-black text-center dark:text-white">
         {{ movie.title }} ({{ getYear }})

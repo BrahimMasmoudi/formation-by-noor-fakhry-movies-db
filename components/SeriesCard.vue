@@ -1,12 +1,11 @@
 <template>
-  <v-card class="pa-4" variant="flat" :to="`/item/tv-${series.id}`">
-    <NuxtLink>
-      <v-img v-if="series.poster_path" class="rounded-t-lg" :src="`${imageSiteUrl}${series.poster_path}`"
-             alt="Movie Image"/>
-      <v-img v-else height="265px"
-             src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-404-icon-graphic-design-template-vector-isolated-png-image_4641202.png"
-             cover/>
-    </NuxtLink>
+  <v-card variant="flat" :to="`/item/tv-${series.id}`"  class="d-flex flex-col align-center justify-center pa-4">
+    <v-img v-if="series.poster_path" class="rounded-lg" :src="`${imageSiteUrl}${series.poster_path}`"
+           width="300"
+           alt="series Image" cover/>
+    <v-img v-else height="265px"
+           src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-404-icon-graphic-design-template-vector-isolated-png-image_4641202.png"
+           cover/>
     <div>
       <h5 class="my-2 text-lg font-bold tracking-tight text-black text-center dark:text-white">
         {{ series.name }} ({{ getYear }})
