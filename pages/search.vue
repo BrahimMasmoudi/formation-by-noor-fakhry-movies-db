@@ -37,7 +37,6 @@
       </li>
     </ul>
   </section>
-
   <section v-if="series.length>0">
     <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
       Now playing TV series
@@ -49,11 +48,24 @@
       </li>
     </ul>
   </section>
+
+
+  <section v-if="movies.length === 0 && series.length === 0">
+    <v-sheet height="100%">
+      <v-sheet class="d-flex flex-column align-center justify-center no-theme-selected" height="100%">
+        <v-img :src="useAsset('/assets/img/no-result.png')" max-height="500" width="500"/>
+        <span class="text-xl font-bold">
+          No results found
+        </span>
+      </v-sheet>
+    </v-sheet>
+  </section>
 </template>
 
 <script setup lang="ts">
 import type {Movie} from "~/types/movie";
 import type {Series} from "~/types/series";
+import {useAsset} from "~/composables/UseAsset";
 
 const search = ref('')
 
