@@ -4,6 +4,7 @@
            width="300"
            alt="series Image" cover/>
     <v-img v-else height="265px"
+           width="100%"
            src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-404-icon-graphic-design-template-vector-isolated-png-image_4641202.png"
            cover/>
     <div>

@@ -4,8 +4,11 @@
            width="300"
            alt="series Image" cover/>
     <v-img v-else height="265px"
-           src="https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-404-icon-graphic-design-template-vector-isolated-png-image_4641202.png"
-           cover/>
+           width="100%"
+           alt="error Image"
+           :src="'https://png.pngtree.com/png-vector/20220520/ourmid/pngtree-404-icon-graphic-design-template-vector-isolated-png-image_4641202.png'"
+           cover>
+    </v-img>
     <div>
       <h5 class="my-2 text-lg font-bold tracking-tight text-black text-center dark:text-white">
         {{ movie.title }} ({{ getYear }})
