@@ -1,43 +1,31 @@
 <template>
-  <div>
-    <section>
-      <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Featured Movies
-      </h1>
+  <Tabs v-model="selectedTab">
+    <template #movie>
+      <Loader v-if="!elements"/>
+      <v-col sm="6" lg="2" md="3" v-for="movie in elements?.movies?.results">
+        <MovieCard :movie="movie"/>
+      </v-col>
+    </template>
 
-      <ul class="grid grid-cols-5 gap">
-        <li v-for="movie in movies">
-          <MovieCard :movie="movie"/>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Featured Tv Series
-      </h1>
-      <ul class="grid grid-cols-5 gap">
-        <li v-for="series in seriesList">
-          <SeriesCard :series="series"/>
-        </li>
-      </ul>
-    </section>
-  </div>
+    <template #tv>
+      <Loader v-if="!elements"/>
+      <v-col sm="6" lg="2" md="3" v-for="series in elements?.series?.results">
+        <SeriesCard :series="series"/>
+      </v-col>
+    </template>
+  </Tabs>
 </template>
 
 <script setup lang="ts">
-const movies = useState(() => [])
-const seriesList = useState(() => [])
+import Tabs, {type Type} from "~/components/Tabs.vue";
 
+const selectedTab = ref<Type>('movie')
+const elements = ref()
 
-await useFetch('/api/movies/discover', {
-  transform: data => {
-    movies.value = data.movies.results
-    seriesList.value = data.series.results
-  }
-})
-
-
+watch(() => selectedTab.value, async (value) => {
+  elements.value = undefined
+  elements.value = await $fetch(`/api/${value}/discover`)
+}, {immediate: true})
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <Tabs v-model="selectedTab">
     <template #movie>
-      <Loader v-if="!elements"/>
+     <Loader v-if="!elements"/>
       <v-col sm="6" lg="2" md="3" v-for="movie in elements?.movies?.results">
         <MovieCard :movie="movie"/>
       </v-col>
@@ -24,7 +24,7 @@ const elements = ref()
 
 watch(() => selectedTab.value, async (value) => {
   elements.value = undefined
-  elements.value = await $fetch(`/api/${value}/top-rated`)
+  elements.value = await $fetch(`/api/${value}/trending`)
 }, {immediate: true})
 </script>
 

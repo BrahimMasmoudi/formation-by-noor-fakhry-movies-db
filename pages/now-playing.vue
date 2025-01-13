@@ -1,19 +1,31 @@
 <template>
-  <section>
-    <h1 class=" mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-      Now playing Movies
-    </h1>
-
-    <ul class="grid grid-cols-5 gap">
-      <li v-for="movie in data?.nowPlayingMovies?.results ??[]">
+  <Tabs v-model="selectedTab">
+    <template #movie>
+      <Loader v-if="!elements"/>
+      <v-col sm="6" lg="2" md="3" v-for="movie in elements?.movies?.results">
         <MovieCard :movie="movie"/>
-      </li>
-    </ul>
-  </section>
+      </v-col>
+    </template>
+
+    <template #tv>
+      <Loader v-if="!elements"/>
+      <v-col sm="6" lg="2" md="3" v-for="series in elements?.series?.results">
+        <SeriesCard :series="series"/>
+      </v-col>
+    </template>
+  </Tabs>
 </template>
 
 <script setup lang="ts">
-const {data} = await useFetch('/api/movies/now-playing')
+import Tabs, {type Type} from "~/components/Tabs.vue";
+
+const selectedTab = ref<Type>('movie')
+const elements = ref()
+
+watch(() => selectedTab.value, async (value) => {
+  elements.value = undefined
+  elements.value = await $fetch(`/api/${value}/now-playing`)
+}, {immediate: true})
 </script>
 
 <style scoped>
